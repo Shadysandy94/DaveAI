@@ -1,0 +1,43 @@
+def calculate_fibonacci_series(n):
+    # Returns the fibonacci series up to n
+    fibonacci_series = [1, 1]
+    while len(fibonacci_series) < n:
+        next_number = fibonacci_series[-1] + fibonacci_series[-2]
+        fibonacci_series.append(next_number)
+    return fibonacci_series
+
+def do_allocation(people_count, bus_count):
+    # Initializing required variables
+    bus_capacity_before = 1
+    current_bus_capacity = 2
+    people_remaining = people_count
+    buses = []
+
+    # Calculating the number of people boarding
+    def people_boarded():
+        if bus_capacity_before <= people_remaining:
+            return bus_capacity_before
+        else:
+            return people_remaining
+
+    # Calculating the capacity of each bus
+    fibonacci_series = calculate_fibonacci_series(bus_count + 1)
+
+    # Loop through each bus and calculate the number of people boarding
+    for i in range(bus_count):
+        boarded = people_boarded()
+        print(f'{boarded} passengers got into bus number {i+1}')
+        people_remaining -= int(boarded)
+        buses.append(boarded)
+        bus_capacity_next = bus_capacity_before + current_bus_capacity
+        bus_capacity_before = current_bus_capacity
+        current_bus_capacity = bus_capacity_next
+
+    return buses
+
+people_count = int(input('Enter number of people: '))
+bus_count = int(input('Enter number of buses: '))
+
+allocation_list = do_allocation(people_count, bus_count)
+
+print(f'Total people boarded: {sum(allocation_list)}')
