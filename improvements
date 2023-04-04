@@ -1,11 +1,3 @@
-def calculate_fibonacci_series(n):
-    # Returns the fibonacci series up to n
-    fibonacci_series = [1, 1]
-    while len(fibonacci_series) < n:
-        next_number = fibonacci_series[-1] + fibonacci_series[-2]
-        fibonacci_series.append(next_number)
-    return fibonacci_series
-
 def do_allocation(people_count, bus_count):
     # Initializing required variables
     bus_capacity_before = 1
@@ -19,9 +11,6 @@ def do_allocation(people_count, bus_count):
             return bus_capacity_before
         else:
             return people_remaining
-
-    # Calculating the capacity of each bus
-    fibonacci_series = calculate_fibonacci_series(bus_count + 1)
 
     # Loop through each bus and calculate the number of people boarding
     for i in range(bus_count):
